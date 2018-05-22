@@ -1,0 +1,31 @@
+<!doctype html>
+
+<head>
+<title>3P Cookies Test Iframe</title>
+<style>
+  .success { color: green; }
+  .error { color: red; }
+</style>
+</head>
+
+<body>
+<div>
+  <p>This is a third party iframe that wants to use cookies.</p>
+</div>
+
+<script>
+  const PREFIX = '3p-cookies-test';
+
+  const cookieName = `${PREFIX}_${Date.now()}`;
+  const div = document.querySelector('div');
+
+  div.innerHTML += `<p>Writing cookie: ${cookieName}=1</p>`;
+  document.cookie = `${cookieName}=1`;
+
+  if (document.cookie.indexOf(`${cookieName}=1`) === -1) {
+    div.innerHTML += '<p class="error">Could not read cookie.</p>';
+  } else {
+    div.innerHTML += '<p class="success">Successfully read cookie.</p>';
+  }
+</script>
+</body>

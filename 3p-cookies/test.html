@@ -1,0 +1,31 @@
+<!doctype html>
+
+<head>
+<title>3P Cookies Test</title>
+<style>
+  .error { color: red; }
+</style>
+</head>
+
+<body>
+<div></div>
+
+<script>
+  const IFRAME_HOST = 'josheverett.github.io';
+  const IFRAME_PATH = '3p-cookies/iframe.html';
+
+  const div = document.querySelector('div');
+
+  if (document.location.hostname === IFRAME_HOST) {
+    div.innerHTML = `
+      <p class="error">
+        This test must be accessed from a different domain than ${IFRAME_HOST}
+        in order to work correctly.
+      </p>
+    `;
+  } else {
+    const src = `${document.location.protocol}//${IFRAME_HOST}/${IFRAME_PATH}`;
+    div.innerHTML = `<iframe src="${src}"></iframe>`;
+  }
+</script>
+</body>
